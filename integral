@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 def findsum(t, k, x, g, n, q, s):  #finding the sum
     sum=0
     for m in range(1, k+1):
-        sum+=round(((m*gamma(k+1)*gamma(t-k+1)*gamma(n+1)*gamma(t-n+1))/(gamma(m+1)*gamma(k-m+1)*gamma(n-m+1)*gamma(t-k-n+m+1)*gamma(t+1)*math.sqrt(2*math.pi)*x*s))*math.exp(-0.5*((t-x*q)/(x*s))**2),4)
+        sum+=((m*gamma(k+1)*gamma(t-k+1)*gamma(n+1)*gamma(t-n+1))/(gamma(m+1)*gamma(k-m+1)*gamma(n-m+1)*gamma(t-k-n+m+1)*gamma(t+1)*math.sqrt(2*math.pi)*x*s))*math.exp(-0.5*((t-x*q)/(x*s))**2)
     return sum
 
 def findint(t, k, x, g, n, q, s):   #integrating over the sum
