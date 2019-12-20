@@ -1,0 +1,30 @@
+import math
+import sympy as sym
+import numpy as np
+from scipy import integrate
+from scipy.special import gamma
+from scipy.special import factorial
+import matplotlib.pyplot as plt
+
+
+def findsum(t, k, x, g, n, q, s):  #finding the sum
+    sum=0
+    for m in range(1, k+1):
+        sum+=round(((m*gamma(k+1)*gamma(t-k+1)*gamma(n+1)*gamma(t-n+1))/(gamma(m+1)*gamma(k-m+1)*gamma(n-m+1)*gamma(t-k-n+m+1)*gamma(t+1)*math.sqrt(2*math.pi)*x*s))*math.exp(-0.5*((t-x*q)/(x*s))**2),4)
+    return sum
+
+def findint(t, k, x, g, n, q, s):   #integrating over the sum
+    i=integrate.quad(findsum, n, np.inf, args=(k, x, g, n, q, s))
+    return i
+
+#sample values
+x = 100 #this is X
+g = 350 #this is gamma
+n=g*x #this is N
+q = 420 #this is mu
+s = 10 #this is sigma
+k=120
+t=n+100
+
+print('running')
+print(findint(t, k, x, g, n, q, s))
